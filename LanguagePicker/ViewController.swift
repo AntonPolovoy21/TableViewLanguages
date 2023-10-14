@@ -12,7 +12,6 @@ class ViewController: UIViewController {
 
     private let arrayOfLanguages = ["English(Australia)", "English(US)", "Russian", "Chinese", "Italian", "German", "French"]
     private let arrayOfCountries = ["Australia", "USA", "Russia", "China", "Italy", "Germany", "France"]
-    private let arrayOfIcons = ["australia" ,"usa", "russia", "china", "italy", "germany", "france"]
     
     private var currentlySelected = IndexPath()
     private var defaultLang = Settings.sellectedLanguage ?? "English(US)"
@@ -75,12 +74,12 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
         
         guard arrayOfLanguages[indexPath.row] != defaultLang else {
             currentlySelected = indexPath
-            cell.configure(withLanguage: arrayOfLanguages[indexPath.row], withCaption: arrayOfCountries[indexPath.row], withFlag: arrayOfIcons[indexPath.row], withSelection: "select_icon")
+            cell.configure(withLanguage: arrayOfLanguages[indexPath.row], withCountry: arrayOfCountries[indexPath.row], withSelection: "select_icon")
             cell.selectionStyle = .none
             return cell
         }
         
-        cell.configure(withLanguage: arrayOfLanguages[indexPath.row], withCaption: arrayOfCountries[indexPath.row], withFlag: arrayOfIcons[indexPath.row])
+        cell.configure(withLanguage: arrayOfLanguages[indexPath.row], withCountry: arrayOfCountries[indexPath.row])
         cell.selectionStyle = .none
         
         return cell

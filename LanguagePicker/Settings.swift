@@ -8,7 +8,6 @@
 import Foundation
 
 final class Settings {
-    
     static var sellectedLanguage: String? {
         get {
             return UserDefaults.standard.string(forKey: "lang")

@@ -59,16 +59,16 @@ class LanguageCell: UITableViewCell {
         }
     }
     
-    func configure(withLanguage language: String, withCaption caption: String, withFlag icon: String) {
+    func configure(withLanguage language: String, withCountry country: String) {
         labelLanguage.text = language
-        labelCountry.text = caption
-        flag.image = UIImage(named: icon)
+        labelCountry.text = country
+        flag.image = UIImage(named: country)
     }
     
-    func configure(withLanguage language: String, withCaption caption: String, withFlag icon: String, withSelection iconSelect: String) {
+    func configure(withLanguage language: String, withCountry country: String, withSelection iconSelect: String) {
         labelLanguage.text = language
-        labelCountry.text = caption
-        flag.image = UIImage(named: icon)
+        labelCountry.text = country
+        flag.image = UIImage(named: country)
         select.image = UIImage(named: iconSelect)
     }
     
