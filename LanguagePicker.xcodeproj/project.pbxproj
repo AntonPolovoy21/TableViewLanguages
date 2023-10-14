@@ -16,6 +16,7 @@
 		84D4B6412AD850D700ED5228 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 84D4B6402AD850D700ED5228 /* SnapKit */; };
 		84D4B6432AD850D700ED5228 /* SnapKit-Dynamic in Frameworks */ = {isa = PBXBuildFile; productRef = 84D4B6422AD850D700ED5228 /* SnapKit-Dynamic */; };
 		84D4B6452AD8586F00ED5228 /* LanguageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D4B6442AD8586F00ED5228 /* LanguageCell.swift */; };
+		84DB4D6A2ADB135500646026 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DB4D692ADB135500646026 /* Settings.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +29,7 @@
 		84D4B6372AD84C4800ED5228 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		84D4B6392AD84C4800ED5228 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		84D4B6442AD8586F00ED5228 /* LanguageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageCell.swift; sourceTree = "<group>"; };
+		84DB4D692ADB135500646026 /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,6 +68,7 @@
 				84D4B62D2AD84C4600ED5228 /* SceneDelegate.swift */,
 				84D4B62F2AD84C4600ED5228 /* ViewController.swift */,
 				84D4B6442AD8586F00ED5228 /* LanguageCell.swift */,
+				84DB4D692ADB135500646026 /* Settings.swift */,
 				84D4B6312AD84C4600ED5228 /* Main.storyboard */,
 				84D4B6342AD84C4800ED5228 /* Assets.xcassets */,
 				84D4B6362AD84C4800ED5228 /* LaunchScreen.storyboard */,
@@ -156,6 +159,7 @@
 				84D4B6452AD8586F00ED5228 /* LanguageCell.swift in Sources */,
 				84D4B62C2AD84C4600ED5228 /* AppDelegate.swift in Sources */,
 				84D4B62E2AD84C4600ED5228 /* SceneDelegate.swift in Sources */,
+				84DB4D6A2ADB135500646026 /* Settings.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -73,6 +73,7 @@ class LanguageCell: UITableViewCell {
     }
     
     public func selectCell() {
+        Settings.sellectedLanguage = labelLanguage.text
         labelLanguage.textColor = .black
         labelCountry.textColor = .black
         select.image = UIImage(named: "select_icon")

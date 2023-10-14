@@ -14,11 +14,8 @@ class ViewController: UIViewController {
     private let arrayOfCountries = ["Australia", "USA", "Russia", "China", "Italy", "Germany", "France"]
     private let arrayOfIcons = ["australia" ,"usa", "russia", "china", "italy", "germany", "france"]
     
-    private var filteredLanguages = [(language: String, country: String, icon: String)]()
-    private var isFiltered = false
-    
     private var currentlySelected = IndexPath()
-    private var defaultLang = "USA"
+    private var defaultLang = Settings.sellectedLanguage ?? "English(US)"
     
     private let titleLabel: UILabel = {
         let lbl = UILabel()
@@ -26,22 +23,6 @@ class ViewController: UIViewController {
         lbl.textAlignment = .center
         lbl.font = UIFont.systemFont(ofSize: 20)
         return lbl
-    }()
-    
-    private let textFieldSearch: UITextField = {
-        let tf = UITextField()
-        tf.placeholder = "Search"
-        tf.adjustsFontSizeToFitWidth = true
-        tf.textColor = .black
-        tf.borderStyle = .roundedRect
-        tf.backgroundColor = .systemGray6
-        tf.layer.borderColor = UIColor.black.cgColor
-        tf.keyboardType = .alphabet
-        tf.keyboardAppearance = .dark
-        tf.clearButtonMode = .always
-        tf.returnKeyType = .done
-        tf.autocorrectionType = .no
-        return tf
     }()
     
     private lazy var tableView = UITableView()
@@ -53,7 +34,6 @@ class ViewController: UIViewController {
 
     private func manageSubviews() {
         view.addSubview(titleLabel)
-        view.addSubview(textFieldSearch)
         view.addSubview(tableView)
         
         titleLabel.snp.makeConstraints(){
@@ -61,16 +41,8 @@ class ViewController: UIViewController {
             $0.centerX.equalTo(view)
         }
         
-        textFieldSearch.snp.makeConstraints(){
-            $0.top.equalTo(titleLabel.snp.bottom).offset(20)
-            $0.left.equalTo(30)
-            $0.right.equalTo(-30)
-            $0.height.equalTo(30)
-        }
-        textFieldSearch.delegate = self
-        
         tableView.snp.makeConstraints(){
-            $0.top.equalTo(textFieldSearch).offset(60)
+            $0.top.equalTo(titleLabel).offset(60)
             $0.left.right.bottom.equalToSuperview()
         }
         
@@ -88,36 +60,12 @@ extension ViewController: UITextFieldDelegate {
         textField.resignFirstResponder()
         return true
     }
-    
-    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        if let text = textField.text {
-            filterLanguages(withText: text)
-        }
-        return true
-    }
-    
-    private func filterLanguages(withText text: String) {
-        guard text != "" else { return }
-        filteredLanguages.removeAll()
-        for str in arrayOfLanguages {
-            if str.lowercased().starts(with: text.lowercased()) {
-                guard let ind = arrayOfLanguages.firstIndex(of: str) else { return }
-                filteredLanguages.append((language: arrayOfLanguages[ind], country: arrayOfCountries[ind], icon: arrayOfIcons[ind]))
-            }
-        }
-        print(filteredLanguages)
-        tableView.reloadData()
-        isFiltered = true
-    }
 }
 
 extension ViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
        
-        if !filteredLanguages.isEmpty {
-            return filteredLanguages.count
-        }
         return arrayOfLanguages.count
     }
     
@@ -125,22 +73,16 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
         
         guard let cell = tableView.dequeueReusableCell(withIdentifier: LanguageCell.identifier) as? LanguageCell else {return UITableViewCell()}
         
-        if !filteredLanguages.isEmpty {
-            cell.configure(withLanguage: filteredLanguages[indexPath.row].language, withCaption: filteredLanguages[indexPath.row].country, withFlag: filteredLanguages[indexPath.row].icon)
+        guard arrayOfLanguages[indexPath.row] != defaultLang else {
+            currentlySelected = indexPath
+            cell.configure(withLanguage: arrayOfLanguages[indexPath.row], withCaption: arrayOfCountries[indexPath.row], withFlag: arrayOfIcons[indexPath.row], withSelection: "select_icon")
             cell.selectionStyle = .none
+            return cell
         }
-        else {
-            guard arrayOfCountries[indexPath.row] != defaultLang else {
-                currentlySelected = indexPath
-                print(indexPath.row, filteredLanguages)
-                cell.configure(withLanguage: arrayOfLanguages[indexPath.row], withCaption: arrayOfCountries[indexPath.row], withFlag: arrayOfIcons[indexPath.row], withSelection: "select_icon")
-                cell.selectionStyle = .none
-                return cell
-            }
-            
-            cell.configure(withLanguage: arrayOfLanguages[indexPath.row], withCaption: arrayOfCountries[indexPath.row], withFlag: arrayOfIcons[indexPath.row])
-            cell.selectionStyle = .none
-        }
+        
+        cell.configure(withLanguage: arrayOfLanguages[indexPath.row], withCaption: arrayOfCountries[indexPath.row], withFlag: arrayOfIcons[indexPath.row])
+        cell.selectionStyle = .none
+        
         return cell
     }
     
